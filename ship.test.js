@@ -17,4 +17,16 @@ describe('ship operations', () => {
 
         expect(ship.hits).toBe(1);
     })
+
+    test('if a ship sinks', () => {
+        const ship = new Ship(5);
+
+        ship.hit();
+        ship.hit();
+        ship.hit();
+        ship.hit();
+        ship.hit();
+
+        expect(ship.isSunk()).toBe(true);
+    })
 })
