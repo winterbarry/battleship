@@ -1,0 +1,25 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 2px; 
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #333;
+}
+
+.cell.ship {
+  background-color: #4b5563; 
+}
+
+.cell.miss {
+  background-color: #93c5fd;
+}
+
+
+.cell.hit {
+  background-color: #dc2626;
+}

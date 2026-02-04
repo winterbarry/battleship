@@ -16,12 +16,18 @@ const GameController = (() => {
     currentPlayer = player;
     gameOver = false;
 
-    // Temporary hardcoded ship placement
-    player.gameboard.placeShip([0, 0], 3);
-    player.gameboard.placeShip([2, 2], 2);
+    // hardcoded player and computer ships
+    player.gameboard.placeShip([0, 0], 5);
+    player.gameboard.placeShip([2, 0], 4);
+    player.gameboard.placeShip([4, 0], 3);
+    player.gameboard.placeShip([6, 0], 3);
+    player.gameboard.placeShip([8, 0], 2);
 
-    computer.gameboard.placeShip([1, 1], 3);
-    computer.gameboard.placeShip([4, 4], 2);
+    computer.gameboard.placeShip([0, 2], 5);
+    computer.gameboard.placeShip([2, 2], 4);
+    computer.gameboard.placeShip([4, 2], 3);
+    computer.gameboard.placeShip([6, 2], 3);
+    computer.gameboard.placeShip([8, 2], 2);
 
     clearBoards();
     renderBoards();
@@ -30,7 +36,7 @@ const GameController = (() => {
 
   function renderBoards() {
     renderBoard(player.gameboard, 'player-board', false);
-    renderBoard(computer.gameboard, 'computer-board', true);
+    renderBoard(computer.gameboard, 'computer-board', false);
   }
 
   function bindEnemyBoardEvents() {
