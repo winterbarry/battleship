@@ -35,6 +35,7 @@ const GameController = (() => {
   }
 
   function renderBoards() {
+    clearBoards();
     renderBoard(player.gameboard, 'player-board', false);
     renderBoard(computer.gameboard, 'computer-board', false);
   }
