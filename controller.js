@@ -1,6 +1,5 @@
 import Player from './player.js';
 import Gameboard from './board.js';
-import Ship from './ship.js';
 import { renderBoard, clearBoards } from './render.js';
 
 const GameController = (() => {
@@ -16,7 +15,7 @@ const GameController = (() => {
     currentPlayer = player;
     gameOver = false;
 
-    // hardcoded player and computer ships
+    // Hardcoded ship placements
     player.gameboard.placeShip([0, 0], 5);
     player.gameboard.placeShip([2, 0], 4);
     player.gameboard.placeShip([4, 0], 3);
@@ -32,6 +31,7 @@ const GameController = (() => {
     clearBoards();
     renderBoards();
     bindEnemyBoardEvents();
+    bindRandomizeButton(); 
   }
 
   function renderBoards() {
@@ -65,7 +65,6 @@ const GameController = (() => {
       return;
     }
 
-    // switch to computer after player attack
     currentPlayer = computer;
     setTimeout(computerTurn, 500); 
   }
@@ -73,7 +72,6 @@ const GameController = (() => {
   function computerTurn() {
     let coords;
 
-    // continue looping until valid cell to attack is found
     do {
       coords = [
         Math.floor(Math.random() * 10),
@@ -89,19 +87,31 @@ const GameController = (() => {
       return;
     }
 
-    // switch back to player
     currentPlayer = player;
   }
 
   function isIllegalMove(board, [row, col]) {
-    const alreadyHitShip = board.board[row][col] instanceof Ship && board.board[row][col].hits > 0;
-    const alreadyMissed = board.missedAttacks.some(([r, c]) => r === row && c === col);
+    const alreadyHitShip =
+      board.board[row][col]?.ship && board.board[row][col].hit;
+    const alreadyMissed = board.missedAttacks.some(
+      ([r, c]) => r === row && c === col
+    );
     return alreadyHitShip || alreadyMissed;
   }
 
   function endGame(message) {
     gameOver = true;
     alert(message);
+  }
+
+  function bindRandomizeButton() {
+    const button = document.querySelector('#randomize-ships-btn');
+
+    button.addEventListener('click', () => {
+      player.gameboard.randomizeShips();
+      computer.gameboard.randomizeShips();
+      renderBoards();
+    });
   }
 
   return {
