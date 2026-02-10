@@ -22,7 +22,9 @@ export function renderBoard(gameboard, containerId, hideShips) {
       }
 
       // show hits
-      if (value && value.hits > 0) {
+      const { hit } = value || {};
+      
+      if (hit) {
         cell.classList.add('hit');
       }
 

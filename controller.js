@@ -15,7 +15,7 @@ const GameController = (() => {
     currentPlayer = player;
     gameOver = false;
 
-    // Hardcoded ship placements
+    // hardcoded ship placements
     player.gameboard.placeShip([0, 0], 5);
     player.gameboard.placeShip([2, 0], 4);
     player.gameboard.placeShip([4, 0], 3);
