@@ -28,6 +28,7 @@ export function renderBoard(gameboard, containerId, hideShips) {
         cell.classList.add('hit');
       }
 
+      // show misses
       if (
         gameboard.missedAttacks.some(
           ([r, c]) => r === row && c === col
