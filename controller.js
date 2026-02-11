@@ -93,6 +93,7 @@ const GameController = (() => {
   function isIllegalMove(board, [row, col]) {
     const alreadyHitShip =
       board.board[row][col]?.ship && board.board[row][col].hit;
+    
     const alreadyMissed = board.missedAttacks.some(
       ([r, c]) => r === row && c === col
     );

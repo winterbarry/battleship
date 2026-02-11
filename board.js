@@ -55,10 +55,14 @@ export default class Gameboard {
       let placed = false;
 
       while (!placed) {
+        // 50% chance of ship beting vertical or horizontal
         const direction = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+
+        // generate starting position for each ship
         const row = Math.floor(Math.random() * this.size);
         const col = Math.floor(Math.random() * this.size);
 
+        // if ship placement is valid gieven coords, size and direction
         if (this.canPlaceShip(row, col, length, direction)) {
           this.placeShip([row, col], length, direction);
           placed = true;
